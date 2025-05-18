@@ -1,54 +1,33 @@
-# React + TypeScript + Vite
+# XO Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple implementation of the Tic Tac Toe game, also known as XO game, using React and TypeScript.
 
-Currently, two official plugins are available:
+The game is built using the following technologies:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* React for the UI
+* TypeScript for type safety
+* Vite for development and build
+* ESLint and Prettier for code quality and formatting
 
-## Expanding the ESLint configuration
+The game is built as a single page application, and it does not require any server-side rendering or API calls. The game state is stored in the React component state, and it is updated on each move.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The game is designed to be responsive, and it should work on any device with a modern web browser.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+The game is also designed to be accessible, and it should be usable by anyone with a modern web browser, including people with disabilities.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The game is built using the following features:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+* React Hooks for state management
+* React Context for game state management
+* React Memo for memoization
+* TypeScript for type safety
+* Vite for development and build
+* ESLint and Prettier for code quality and formatting
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+The game is tested using Jest and React Testing Library.
+
+The game is deployed on Vercel, and it can be accessed at [https://xo-game.vercel.app](https://xo-game.vercel.app).
+
+The source code is available on GitHub at [https://github.com/michalzaq12/xo-game](https://github.com/michalzaq12/xo-game).
+
+The game is licensed under the MIT license.
