@@ -1,7 +1,6 @@
 # XO Game
 
 This is a simple implementation of the Tic Tac Toe game, also known as XO game, using React and TypeScript.
-
 The game is built using the following technologies:
 
 * React for the UI
