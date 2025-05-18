@@ -1,0 +1,49 @@
+*{margin: 0;
+padding: 0;
+box-sizing: border-box;}
+body{
+  background-color: rgba(25, 140, 219, 0.8);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  width: 1200px;
+  margin: 0 auto;
+}
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.status {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 5px;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color:pink;;
+  border: 2px solid #333;
+  color: white;
+  margin: 5px;
+}
+
+.square:hover {
+  background-color: #d0d0d0;
+}
