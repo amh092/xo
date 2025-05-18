@@ -6,8 +6,12 @@ body{
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
-  width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+ 
 }
 .game {
   display: flex;
@@ -15,10 +19,21 @@ body{
   align-items: center;
   justify-content: center;
 
-  width: 1200px;
-  margin: 0 auto;
-}
 
+}
+.reset-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.reset-button:hover {
+  background-color: #45a049;
+}
 .status {
   margin-bottom: 10px;
   font-size: 24px;
@@ -46,4 +61,17 @@ body{
 
 .square:hover {
   background-color: #d0d0d0;
+}
+
+
+@media screen and (max-width: 768px) {
+  body{
+    width: 100%;
+    margin: 0 auto;
+  }
+  .game {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
 }

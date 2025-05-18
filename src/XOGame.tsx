@@ -32,7 +32,19 @@ const XOGame: React.FC = () => {
     },
     [board, isXNext, winner]
   );
+  // Reset button handler
+  const handleReset = useCallback(() => {
+    setBoard(Array(9).fill(null));
+    setIsXNext(true);
+    
+  }, []);
 
+  // Render a reset button
+  const renderResetButton = () => (
+    <button className="reset-button" onClick={handleReset}>
+      Reset
+    </button>
+  );
   // Render a single square, pass memoized onClick handler
   const renderSquare = (index: number) => (
     <Square value={board[index]} onClick={() => handleClick(index)} />
@@ -55,6 +67,7 @@ const XOGame: React.FC = () => {
           </div>
         ))}
       </div>
+      {renderResetButton()}
     </div>
   );
 };
