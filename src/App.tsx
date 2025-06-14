@@ -3,12 +3,10 @@ import XOGame from './XOGame';
 function App() {
 
   return
- 
-  
-  
+<>
 
-<XOGame />;
- 
+<XOGame />; 
+</>
 }
 
 export default App
