@@ -166,6 +166,16 @@ const XOGame: React.FC = () => {
     return symbol;
   };
   const currentQuestions = language === 'ar' ? QUESTIONS : EN_QUESTIONS;
+  // Track shuffled questions and index
+  const shuffledQuestionsRef = React.useRef<Question[]>([]);
+  const questionIndexRef = React.useRef<number>(0);
+
+  // Shuffle questions when language changes
+  useEffect(() => {
+    const shuffled = [...currentQuestions].sort(() => Math.random() - 0.5);
+    shuffledQuestionsRef.current = shuffled;
+    questionIndexRef.current = 0;
+  }, [language]);
   const dir = language === 'ar' ? 'rtl' : 'ltr';
 
   const winner = useMemo(() => calculateWinner(board), [board]);
@@ -208,7 +218,18 @@ const XOGame: React.FC = () => {
 
   // Ask a question before player's move
   const askQuestion = useCallback((forPlayer: 'X' | 'O') => {
-    const q = currentQuestions[Math.floor(Math.random() * currentQuestions.length)];
+    // Use shuffled questions, cycle through all before repeating
+    if (!shuffledQuestionsRef.current.length) {
+      shuffledQuestionsRef.current = [...currentQuestions].sort(() => Math.random() - 0.5);
+      questionIndexRef.current = 0;
+    }
+    if (questionIndexRef.current >= shuffledQuestionsRef.current.length) {
+      // All used, reshuffle
+      shuffledQuestionsRef.current = [...currentQuestions].sort(() => Math.random() - 0.5);
+      questionIndexRef.current = 0;
+    }
+    const q = shuffledQuestionsRef.current[questionIndexRef.current];
+    questionIndexRef.current += 1;
     setQuestion(q);
     setSelectedChoice(null);
     setShowModal(true);
