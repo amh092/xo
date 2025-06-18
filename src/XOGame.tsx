@@ -289,7 +289,7 @@ const XOGame: React.FC = () => {
     setFeedback(null);
     setQuestion(null);
     setQuestionFor(null);
-    setPendingMoveIndex(null);
+    setPendingMoveIndex(null)
   };
 
   return (
