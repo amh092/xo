@@ -301,6 +301,20 @@ const XOGame: React.FC = () => {
         setShowModal(false);
         setFeedback(null);
         setPendingMoveIndex(null);
+        // CPU move after delay if mode is cpu and now it's CPU's turn
+        if (mode === 'cpu' && !isXNext) {
+          setTimeout(() => {
+            // Find available moves
+            const available = board.map((v, i) => v === null ? i : null).filter(i => i !== null) as number[];
+            if (available.length > 0) {
+              const move = available[Math.floor(Math.random() * available.length)];
+              const cpuBoard = newBoard.slice();
+              cpuBoard[move] = 'O';
+              setBoard(cpuBoard);
+              setIsXNext(true);
+            }
+          }, 300);
+        }
       }, 700);
       setIsXNext(!isXNext);
     } else {
@@ -336,7 +350,7 @@ const XOGame: React.FC = () => {
           setIsXNext(true);
         }
         setIsCpuThinking(false);
-      }, 500);
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, [mode, isXNext, winner, board, cpuMove]);
