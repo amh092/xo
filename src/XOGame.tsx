@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import './XOGame.css';
 import { AR_QUESTIONS, AR_CATEGORIES } from './questions_ar';
 import { EN_QUESTIONS, EN_CATEGORIES } from './questions_en';
@@ -60,7 +60,7 @@ const XOGame: React.FC = () => {
 
   const winnerInfo = useMemo(() => calculateWinner(board), [board]);
   const winner = winnerInfo.winner;
-  const winningLine = winnerInfo.line;
+
 
   // Helper: Find all empty squares
   const getAvailableMoves = (brd: Array<string | null>) =>
