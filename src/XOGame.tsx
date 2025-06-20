@@ -18,6 +18,8 @@ const XOGame: React.FC = () => {
   const [questionFor, setQuestionFor] = useState<'X' | 'O' | null>(null);
   const [feedback, setFeedback] = useState<string | null>(null);
   const [pendingMoveIndex, setPendingMoveIndex] = useState<number | null>(null);
+  // New state for shuffled choices
+  const [shuffledChoices, setShuffledChoices] = useState<string[]>([]);
 
   // Helper for localized UI strings
   const t = (ar: string, en: string) => (language === 'ar' ? ar : en);
@@ -40,6 +42,20 @@ const XOGame: React.FC = () => {
     usedQuestionsRef.current = new Set();
   }, [language, selectedCategory]);
   const dir = language === 'ar' ? 'rtl' : 'ltr';
+
+  // Shuffle choices whenever a new question is set
+  useEffect(() => {
+    if (question) {
+      const shuffled = [...question.choices];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      setShuffledChoices(shuffled);
+    } else {
+      setShuffledChoices([]);
+    }
+  }, [question]);
 
   const winner = useMemo(() => calculateWinner(board), [board]);
 
@@ -308,7 +324,7 @@ const XOGame: React.FC = () => {
             <h2>{t('سؤال للاعب', 'Question for player')} {playerName(questionFor!)}</h2>
             <div className="modal-question">{question?.question}</div>
             <div className="modal-choices">
-              {question?.choices.map((choice, idx) => (
+              {shuffledChoices.map((choice, idx) => (
                 <button
                   key={idx}
                   className={selectedChoice === choice ? 'selected' : ''}
