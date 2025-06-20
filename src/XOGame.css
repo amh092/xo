@@ -263,3 +263,9 @@ body{
   color: #aaa;
   cursor: not-allowed;
 }
+
+.logoStyle {
+  display: flex;  
+  justify-content: center;
+  
+}

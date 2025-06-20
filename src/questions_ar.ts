@@ -76,4 +76,51 @@ export const AR_QUESTIONS: Question[] = [
   { question: "في أي دولة أُقيمت أول بطولة لكأس العالم؟", choices: ["الأوروغواي", "إيطاليا", "البرازيل", "فرنسا"], answer: "الأوروغواي", category: "رياضة", difficulty: 'medium' },
   { question: "ما هو اسم الجائزة التي تُمنح لأفضل لاعب في العالم؟", choices: ["الكرة الذهبية", "الحذاء الذهبي", "الكرة الفضية", "الكأس الذهبية"], answer: "الكرة الذهبية", category: "رياضة", difficulty: 'easy' },
   { question: "كم عدد اللاعبين في فريق كرة القدم الأساسي؟", choices: ["11", "10", "12", "9"], answer: "11", category: "رياضة", difficulty: 'easy' },
+
+  // أسئلة إسلامية إضافية
+  { question: "كم عدد آيات سورة البقرة؟", choices: ["286", "285", "287", "288"], answer: "286", category: "إسلاميات", difficulty: 'medium' },
+  { question: "من هو النبي الذي ابتلعه الحوت؟", choices: ["يونس", "موسى", "إبراهيم", "إلياس"], answer: "يونس", category: "إسلاميات", difficulty: 'easy' },
+  { question: "ما هي أول كلمة نزلت في القرآن الكريم؟", choices: ["اقرأ", "الحمد", "بسم", "قل"], answer: "اقرأ", category: "إسلاميات", difficulty: 'easy' },
+  { question: "ما هي السورة التي تُسمى قلب القرآن؟", choices: ["يس", "الفاتحة", "الرحمن", "البقرة"], answer: "يس", category: "إسلاميات", difficulty: 'medium' },
+  { question: "في أي سورة وردت آية الكرسي؟", choices: ["البقرة", "آل عمران", "النساء", "المائدة"], answer: "البقرة", category: "إسلاميات", difficulty: 'easy' },
+
+  // أسئلة رياضية إضافية
+  { question: "من هو أكثر لاعب سجل أهدافًا في تاريخ كأس العالم؟", choices: ["ميروسلاف كلوزه", "بيليه", "رونالدو", "جيرد مولر"], answer: "ميروسلاف كلوزه", category: "رياضة", difficulty: 'hard' },
+  { question: "كم عدد اللاعبين في فريق كرة السلة الأساسي؟", choices: ["5", "6", "7", "8"], answer: "5", category: "رياضة", difficulty: 'easy' },
+  { question: "ما هو أول منتخب عربي يصل إلى نصف نهائي كأس العالم للشباب؟", choices: ["مصر", "المغرب", "السعودية", "قطر"], answer: "مصر", category: "رياضة", difficulty: 'medium' },
+  { question: "من هو أسرع رجل في العالم؟", choices: ["يوسين بولت", "كارل لويس", "جاستن غاتلين", "تايسون غاي"], answer: "يوسين بولت", category: "رياضة", difficulty: 'easy' },
+  { question: "ما هو النادي الأكثر تتويجًا بالدوري الإنجليزي الممتاز؟", choices: ["مانشستر يونايتد", "ليفربول", "تشيلسي", "أرسنال"], answer: "مانشستر يونايتد", category: "رياضة", difficulty: 'medium' },
+
+  // أسئلة إسلامية جديدة
+  { question: "ما هي السورة التي تعدل ثلث القرآن؟", choices: ["الإخلاص", "الفلق", "الكوثر", "الناس"], answer: "الإخلاص", category: "إسلاميات", difficulty: 'easy' },
+  { question: "كم عدد سور القرآن الكريم؟", choices: ["114", "113", "112", "115"], answer: "114", category: "إسلاميات", difficulty: 'easy' },
+  { question: "من هو أول الأنبياء؟", choices: ["آدم", "نوح", "إبراهيم", "موسى"], answer: "آدم", category: "إسلاميات", difficulty: 'easy' },
+  { question: "ما هي الصلاة التي تُسمى الصلاة الوسطى؟", choices: ["العصر", "الظهر", "المغرب", "العشاء"], answer: "العصر", category: "إسلاميات", difficulty: 'medium' },
+  { question: "من هو النبي الذي بنى الكعبة مع ابنه؟", choices: ["إبراهيم", "نوح", "موسى", "عيسى"], answer: "إبراهيم", category: "إسلاميات", difficulty: 'medium' },
+
+  // أسئلة رياضية جديدة
+  { question: "ما هو أول فريق عربي تأهل لكأس العالم؟", choices: ["مصر", "المغرب", "الجزائر", "السعودية"], answer: "مصر", category: "رياضة", difficulty: 'medium' },
+  { question: "كم عدد أشواط كرة السلة؟", choices: ["4", "2", "3", "5"], answer: "4", category: "رياضة", difficulty: 'easy' },
+  { question: "من هو اللاعب الذي حصل على أكثر كرات ذهبية؟", choices: ["ليونيل ميسي", "كريستيانو رونالدو", "يوهان كرويف", "رونالدو البرازيلي"], answer: "ليونيل ميسي", category: "رياضة", difficulty: 'medium' },
+  { question: "أين أُقيمت أول دورة ألعاب أولمبية حديثة؟", choices: ["أثينا", "باريس", "لندن", "روما"], answer: "أثينا", category: "رياضة", difficulty: 'hard' },
+  { question: "ما هو عدد اللاعبين في كرة الطائرة لكل فريق في الملعب؟", choices: ["6", "7", "5", "8"], answer: "6", category: "رياضة", difficulty: 'easy' },
+
+  // أسئلة ثقافة عامة جديدة
+  { question: "ما هو أطول نهر في العالم؟", choices: ["النيل", "الأمازون", "اليانغتسي", "الدانوب"], answer: "النيل", category: "ثقافة عامة", difficulty: 'medium' },
+  { question: "ما هي عاصمة اليابان؟", choices: ["طوكيو", "بكين", "سيول", "بانكوك"], answer: "طوكيو", category: "ثقافة عامة", difficulty: 'easy' },
+  { question: "في أي قارة تقع دولة الأرجنتين؟", choices: ["أمريكا الجنوبية", "أوروبا", "آسيا", "أفريقيا"], answer: "أمريكا الجنوبية", category: "ثقافة عامة", difficulty: 'easy' },
+  { question: "ما هو الكوكب الأقرب إلى الشمس؟", choices: ["عطارد", "الزهرة", "الأرض", "المريخ"], answer: "عطارد", category: "ثقافة عامة", difficulty: 'easy' },
+  { question: "من هو مخترع المصباح الكهربائي؟", choices: ["توماس إديسون", "جراهام بيل", "ألبرت أينشتاين", "إسحاق نيوتن"], answer: "توماس إديسون", category: "ثقافة عامة", difficulty: 'medium' },
+  // أسئلة جديدة متنوعة
+{ question: "ما هو اسم عاصمة كندا؟", choices: ["أوتاوا", "تورنتو", "فانكوفر", "مونتريال"], answer: "أوتاوا", category: "جغرافيا", difficulty: 'medium' },
+{ question: "كم عدد الأسنان الدائمة لدى الإنسان البالغ؟", choices: ["32", "30", "28", "34"], answer: "32", category: "علوم", difficulty: 'medium' },
+{ question: "من هو مخترع الهاتف؟", choices: ["جراهام بيل", "توماس إديسون", "ألبرت أينشتاين", "نيوتن"], answer: "جراهام بيل", category: "ثقافة عامة", difficulty: 'medium' },
+{ question: "في أي سنة هاجر النبي محمد إلى المدينة؟", choices: ["622م", "610م", "632م", "600م"], answer: "622م", category: "إسلاميات", difficulty: 'medium' },
+{ question: "من هو الصحابي الذي جمع القرآن في مصحف واحد؟", choices: ["أبو بكر الصديق", "عمر بن الخطاب", "عثمان بن عفان", "علي بن أبي طالب"], answer: "عثمان بن عفان", category: "إسلاميات", difficulty: 'medium' },
+{ question: "من هو أول من مشى على سطح القمر؟", choices: ["نيل أرمسترونغ", "باز ألدرين", "يوري غاغارين", "مايكل كولينز"], answer: "نيل أرمسترونغ", category: "تاريخ", difficulty: 'medium' }, // was already in original, removed
+{ question: "كم عدد الأضلاع في جسم الإنسان؟", choices: ["24", "26", "22", "28"], answer: "24", category: "علوم", difficulty: 'medium' },
+{ question: "من هو بطل كأس العالم 2018؟", choices: ["فرنسا", "كرواتيا", "البرازيل", "ألمانيا"], answer: "فرنسا", category: "رياضة", difficulty: 'medium' },
+{ question: "ما هي الدولة العربية التي تطل على المحيط الأطلسي والبحر المتوسط؟", choices: ["المغرب", "الجزائر", "تونس", "ليبيا"], answer: "المغرب", category: "جغرافيا", difficulty: 'medium' },
+{ question: "ما هو العضو الذي يُنتج الأنسولين في جسم الإنسان؟", choices: ["البنكرياس", "الكبد", "الكلى", "الطحال"], answer: "البنكرياس", category: "علوم", difficulty: 'medium' },
+
 ];
