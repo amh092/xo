@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useRef, useState, useMemo, useCallback, useEffect } from 'react';
 import './XOGame.css';
 import { AR_QUESTIONS, AR_CATEGORIES } from './questions_ar';
 import { EN_QUESTIONS, EN_CATEGORIES } from './questions_en';
@@ -6,6 +6,7 @@ import type { Question } from './questions_ar';
 
 const XOGame: React.FC = () => {
   const [questionMode, setQuestionMode] = useState<boolean>(true);
+
   const [language, setLanguage] = useState<'ar' | 'en'>('ar');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [board, setBoard] = useState<Array<string | null>>(Array(9).fill(null));
@@ -57,7 +58,9 @@ const XOGame: React.FC = () => {
     }
   }, [question]);
 
-  const winner = useMemo(() => calculateWinner(board), [board]);
+  const winnerInfo = useMemo(() => calculateWinner(board), [board]);
+  const winner = winnerInfo.winner;
+  const winningLine = winnerInfo.line;
 
   // Helper: Find all empty squares
   const getAvailableMoves = (brd: Array<string | null>) =>
@@ -67,9 +70,9 @@ const XOGame: React.FC = () => {
   const cpuMove = useCallback((brd: Array<string | null>) => {
     function minimax(board: Array<string | null>, isMaximizing: boolean): { score: number, move: number | null } {
       const result = calculateWinner(board);
-      if (result === 'O') return { score: 1, move: null };
-      if (result === 'X') return { score: -1, move: null };
-      if (result === 'draw') return { score: 0, move: null };
+      if (result.winner === 'O') return { score: 1, move: null };
+      if (result.winner === 'X') return { score: -1, move: null };
+      if (result.winner === 'draw') return { score: 0, move: null };
       const moves = getAvailableMoves(board);
       let bestMove: number | null = null;
       let bestScore = isMaximizing ? -Infinity : Infinity;
@@ -227,6 +230,8 @@ const XOGame: React.FC = () => {
     usedQuestionsRef.current = new Set();
   };
 
+
+
   return (
     <div className="xo-game-container" dir={dir}>
       <header className="xo-header">
@@ -298,7 +303,7 @@ const XOGame: React.FC = () => {
           </span>
         )}
       </div> 
-      <div className="board" dir={dir}>
+      <div className="board" dir={dir} style={{position: 'relative'}}>
         {[0, 1, 2].map(row => (
           <div key={row} className="board-row">
             {[0, 1, 2].map(col => {
@@ -357,7 +362,8 @@ const XOGame: React.FC = () => {
 }
 
 // Winner calculation function stays the same
-function calculateWinner(squares: Array<string | null>) {
+// Now returns { winner: 'X' | 'O' | 'draw' | null, line: number[] | null }
+function calculateWinner(squares: Array<string | null>): { winner: string | null, line: number[] | null } {
   const lines = [
     [0, 1, 2], // rows
     [3, 4, 5],
@@ -371,13 +377,13 @@ function calculateWinner(squares: Array<string | null>) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return { winner: squares[a], line: lines[i] };
     }
   }
   if (squares.every((square) => square !== null)) {
-    return 'draw';
+    return { winner: 'draw', line: null };
   }
-  return null;
+  return { winner: null, line: null };
 }
 
 export default XOGame;
