@@ -5,8 +5,8 @@ function App() {
   return (
     <>
      <Analytics />
-      <AdBanner />
       <XOGame />
+      <AdBanner />
     </>
   );
 }
