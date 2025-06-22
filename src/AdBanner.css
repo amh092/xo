@@ -1,0 +1,23 @@
+.ad-banner {
+    width: 100%;
+    max-width: 100vw;
+    margin: 50px auto;
+    padding: 8px 4px;
+    box-sizing: border-box;
+  }
+  
+  .adsbygoogle {
+    display: block !important;
+    width: 100% !important;
+    min-height: 60px; /* adjust as needed for your ad type */
+  }
+  
+  /* Responsive adjustments for very small screens */
+  @media (max-width: 480px) {
+    .ad-banner {
+      padding: 4px 0;
+    }
+    .adsbygoogle {
+      min-height: 40px; /* smaller banner for mobile */
+    }
+  }

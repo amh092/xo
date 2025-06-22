@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-
+import './AdBanner.css';
 const AdBanner = () => {
   const adRef = useRef<HTMLModElement>(null);
 
@@ -15,15 +15,19 @@ const AdBanner = () => {
   }, []);
 
   return (
-    <ins
-      className="adsbygoogle"
-      style={{ display: "block", textAlign: "center" , height: "100" , width: "100" }}
-      data-ad-client="ca-pub-7300503836942540"
-      data-ad-slot="1234567890"
-      data-ad-format="auto"
-      data-full-width-responsive="true"
-      ref={adRef}
-    ></ins>
+    <div className="ad-banner"> 
+
+    
+<ins
+  className="adsbygoogle"
+  style={{ display: "block", textAlign: "center" }} // remove height/width: 0
+  data-ad-client="ca-pub-7300503836942540"
+  data-ad-slot="1234567890"
+  data-ad-format="auto"
+  data-full-width-responsive="true"
+  ref={adRef}
+/>
+    </div>
   );
 };
 
