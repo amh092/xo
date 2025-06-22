@@ -2,6 +2,7 @@ import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import './XOGame.css';
 import { AR_QUESTIONS, AR_CATEGORIES } from './questions_ar';
 import { EN_QUESTIONS, EN_CATEGORIES } from './questions_en';
+
 import type { Question } from './questions_ar';
 import { Link } from 'react-router-dom';
 const XOGame: React.FC = () => {
