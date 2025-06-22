@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import './XOGame.css';
 import { AR_QUESTIONS, AR_CATEGORIES } from './questions_ar';
 import { EN_QUESTIONS, EN_CATEGORIES } from './questions_en';
-
+import { Suspense } from 'react';
 import type { Question } from './questions_ar';
 import { Link } from 'react-router-dom';
 const XOGame: React.FC = () => {
@@ -260,7 +260,10 @@ useEffect(() => {
      
       <header className="xo-header">
         <div className="xo-header-row">
+          <Suspense fallback={<div>Loading...</div>}>
         {welcomeSeconds <= 60 && (
+
+   
   <section className="xo-intro">
     <div style={{ fontWeight: 500, color: "#e65100", marginBottom: 8 }}>
       {t(
@@ -290,6 +293,7 @@ useEffect(() => {
     </ul>
   </section>
 )}
+</Suspense>
           <div className="xo-lang-selector">
   <label htmlFor="lang">{t('اللغة', 'Language:')}</label>
   <button
