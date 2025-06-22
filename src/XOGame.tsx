@@ -13,13 +13,13 @@ const XOGame: React.FC = () => {
   const [board, setBoard] = useState<Array<string | null>>(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true);
   const [mode, setMode] = useState<'pvp' | 'cpu'>('pvp');
+  const [pendingSquare, setPendingSquare] = useState<number | null>(null);
+
   const [isCpuThinking, setIsCpuThinking] = useState(false);
   const [question, setQuestion] = useState<Question | null>(null);
   const [showModal, setShowModal] = useState(false);
-  const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
-  const [questionFor, setQuestionFor] = useState<'X' | 'O' | null>(null);
-  const [feedback, setFeedback] = useState<string | null>(null);
-  const [pendingMoveIndex, setPendingMoveIndex] = useState<number | null>(null);
+  const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
+  const [isChoiceCorrect, setIsChoiceCorrect] = useState<boolean | null>(null);
   const [welcomeSeconds, setWelcomeSeconds] = useState(0);
   const [selectedDifficulty, setSelectedDifficulty] = useState<'all' | 'easy' | 'medium' | 'hard'>('all');
 useEffect(() => {
@@ -30,7 +30,12 @@ useEffect(() => {
 }, []);
   // New state for shuffled choices
   const [shuffledChoices, setShuffledChoices] = useState<string[]>([]);
-
+  useEffect(() => {
+    if (question && question.choices) {
+      const shuffled = [...question.choices].sort(() => Math.random() - 0.5);
+      setShuffledChoices(shuffled);
+    }
+  }, [question]);
   // Helper for localized UI strings
   const t = (ar: string, en: string) => (language === 'ar' ? ar : en);
   const playerName = (symbol: 'X' | 'O') => {
@@ -70,8 +75,13 @@ useEffect(() => {
 
   const winnerInfo = useMemo(() => calculateWinner(board), [board]);
   const winner = winnerInfo.winner;
-
-
+  function updateBoardAt(index: number) {
+    setBoard((prevBoard) => {
+      const newBoard = [...prevBoard];
+      newBoard[index] = isXNext ? 'X' : 'O';
+      return newBoard;
+    });
+  }
   // Helper: Find all empty squares
   const getAvailableMoves = (brd: Array<string | null>) =>
     brd.map((val, idx) => (val === null ? idx : null)).filter(idx => idx !== null) as number[];
@@ -110,6 +120,7 @@ useEffect(() => {
 
   // Ask a question before player's move
   const askQuestion = useCallback((forPlayer: 'X' | 'O') => {
+    console.log(forPlayer);
     // Use shuffled questions, ensure each is only asked once per game
     if (!shuffledQuestionsRef.current.length) {
       shuffledQuestionsRef.current = [...currentQuestions].sort(() => Math.random() - 0.5);
@@ -139,8 +150,7 @@ useEffect(() => {
     setQuestion(q);
     setSelectedChoice(null);
     setShowModal(true);
-    setQuestionFor(forPlayer);
-    setFeedback(null);
+   
   }, [currentQuestions]);
 
   // Handle click on board
@@ -155,58 +165,33 @@ useEffect(() => {
       setIsXNext(!isXNext);
       return;
     }
-    setPendingMoveIndex(idx);
+  
+    // Question mode: save the square index, then ask the question
+    setPendingSquare(idx);
     askQuestion(isXNext ? 'X' : 'O');
   };
 
   // Handle answer submission
-  const handleAnswer = () => {
-    if (!question || selectedChoice === null || pendingMoveIndex === null) return;
-    if (selectedChoice === question.answer) {
-      // Correct: place X or O at the pendingMoveIndex
-      const newBoard = board.slice();
-      newBoard[pendingMoveIndex] = isXNext ? 'X' : 'O';
-      setBoard(newBoard);
-      setFeedback(t('إجابة صحيحة!', 'Correct answer!'));
-      setTimeout(() => {
-        setShowModal(false);
-        setFeedback(null);
-        setPendingMoveIndex(null);
-        // CPU move after delay if mode is cpu and now it's CPU's turn
-        if (mode === 'cpu' && !isXNext) {
-          setTimeout(() => {
-            // Find available moves
-            const available = board.map((v, i) => v === null ? i : null).filter(i => i !== null) as number[];
-            if (available.length > 0) {
-              const move = available[Math.floor(Math.random() * available.length)];
-              const cpuBoard = newBoard.slice();
-              cpuBoard[move] = 'O';
-              setBoard(cpuBoard);
-              setIsXNext(true);
-            }
-          }, 300);
-        }
-      }, 700);
-      setIsXNext(!isXNext);
-    } else {
-      setFeedback(t('إجابة خاطئة!', 'Wrong answer!'));
-      setTimeout(() => {
-        setShowModal(false);
-        setFeedback(null);
-        setPendingMoveIndex(null);
-      }, 700);
-      setIsXNext(!isXNext);
+  const handleChoice = (idx: number) => {
+    setSelectedChoice(idx);
+    const isCorrect = shuffledChoices[idx] === question?.answer;
+    setIsChoiceCorrect(isCorrect);
+  
+    if (isCorrect && pendingSquare !== null) {
+      updateBoardAt(pendingSquare);
+      setPendingSquare(null);
     }
+    setIsXNext((prev) => !prev); // <-- Always switch turn, regardless of answer
+  
+    setTimeout(() => {
+      setSelectedChoice(null);
+      setIsChoiceCorrect(null);
+      setShowModal(false);
+    }, 1200);
   };
 
   // Handle cancel
-  const handleCancel = () => {
-    setShowModal(false);
-    setSelectedChoice(null);
-    setFeedback(null);
-    setPendingMoveIndex(null);
-    setIsXNext(!isXNext); // Pass turn if cancelled
-  };
+ 
 
   // CPU move effect
   useEffect(() => {
@@ -233,10 +218,7 @@ useEffect(() => {
     setIsCpuThinking(false);
     setShowModal(false);
     setSelectedChoice(null);
-    setFeedback(null);
     setQuestion(null);
-    setQuestionFor(null);
-    setPendingMoveIndex(null);
     usedQuestionsRef.current = new Set();
   };
 
@@ -400,39 +382,36 @@ useEffect(() => {
       </div>
       <button className="reset-button" onClick={resetGame}>{t('إعادة', 'Reset')}</button>
       {showModal && question && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h2>{t('سؤال للاعب', 'Question for player')} {playerName(questionFor!)}</h2>
-            <div className="modal-question">{question?.question}</div>
-            <div className="modal-choices">
-              {shuffledChoices.map((choice, idx) => (
-                <button
-                  key={idx}
-                  className={selectedChoice === choice ? 'selected' : ''}
-                  onClick={() => setSelectedChoice(choice)}
-                >
-                  {choice}
-                </button>
-              ))}
-            </div>
-            <div className="modal-actions">
-              <button
-                className="modal-submit-btn"
-                onClick={handleAnswer}
-                disabled={!selectedChoice}
-              >
-                {t('تأكيد', 'Submit')}
-              </button>
-              <button onClick={handleCancel}>{t('إلغاء', 'Cancel')}</button>
-            </div>
-            {feedback && (
-              <div className={feedback === t('إجابة صحيحة!', 'Correct answer!') ? 'modal-feedback correct' : 'modal-feedback wrong'}>
-                {feedback}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+  <div className="modal-overlay">
+    <div className="modal-content">
+      <h2>{t('سؤال للاعب', 'Question for player')} {playerName(isXNext ? 'X' : 'O')}</h2>
+      <div className="modal-question">{question.question}</div>
+      <div className="modal-choices">
+        {shuffledChoices.map((choice, idx) => {
+           let btnClass = "";
+           if (selectedChoice !== null) {
+             if (idx === selectedChoice) {
+               btnClass = choice === question.answer ? "answer-correct" : "answer-incorrect";
+             } else if (choice === question.answer && isChoiceCorrect === false) {
+               btnClass = "answer-correct";
+             }
+           }
+          return (
+            <button
+              key={idx}
+              className={btnClass}
+              disabled={selectedChoice !== null}
+              onClick={() => handleChoice(idx)}
+            >
+              {choice}
+            </button>
+          );
+        })}
+      </div>
+     
+    </div>
+  </div>
+)}
     </div>
   );
 }

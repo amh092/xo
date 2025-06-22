@@ -335,3 +335,14 @@ body{
   margin-right: 8px;
   width: 30px;
 }
+
+.answer-correct {
+  background: #43a047 !important; /* green */
+  color: #fff !important;
+  border: 2px solid #388e3c !important;
+}
+.answer-incorrect {
+  background: #e53935 !important; /* red */
+  color: #fff !important;
+  border: 2px solid #b71c1c !important;
+}
