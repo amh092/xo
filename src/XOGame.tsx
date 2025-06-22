@@ -19,6 +19,14 @@ const XOGame: React.FC = () => {
   const [questionFor, setQuestionFor] = useState<'X' | 'O' | null>(null);
   const [feedback, setFeedback] = useState<string | null>(null);
   const [pendingMoveIndex, setPendingMoveIndex] = useState<number | null>(null);
+  const [welcomeSeconds, setWelcomeSeconds] = useState(0);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setWelcomeSeconds((prev) => prev + 1);
+  }, 100);
+  return () => clearInterval(interval);
+}, []);
   // New state for shuffled choices
   const [shuffledChoices, setShuffledChoices] = useState<string[]>([]);
 
@@ -247,28 +255,39 @@ const XOGame: React.FC = () => {
 </li>
         </ul>
       </nav>
-      <section className="xo-intro">
-  <h2>
-    {t("مرحبًا بك في لعبة XO!", "Welcome to XO Game!")}
-  </h2>
-  <p>
-    {t(
-      "لعبة XO تقدم لك تجربة جديدة للعبة إكس-أو الكلاسيكية، مع أسئلة تعليمية باللغة العربية والإنجليزية لتحدي عقلك أثناء اللعب. استمتع بالتنافس مع الأصدقاء أو الكمبيوتر، وطور معرفتك مع كل حركة!",
-      "XO Game is a unique twist on the classic Tic-Tac-Toe, offering both English and Arabic questions to challenge your mind while you play. Enjoy competing with friends or the computer, and improve your knowledge with every move!"
-    )}
-  </p>
-  <h3>
-    {t("كيفية اللعب", "How to Play")}
-  </h3>
-  <ul>
-    <li>{t("اختر اللغة والفئة.", "Choose your language and category.")}</li>
-    <li>{t("أجب عن الأسئلة لتحصل على دورك في اللوحة.", "Answer questions to earn your move on the board.")}</li>
-    <li>{t("أول من يحصل على ثلاثة رموز متتالية يفوز!", "First to get three in a row wins!")}</li>
-  </ul>
-</section>
+     
       <header className="xo-header">
         <div className="xo-header-row">
-          
+        {welcomeSeconds <= 60 && (
+  <section className="xo-intro">
+    <div style={{ fontWeight: 500, color: "#e65100", marginBottom: 8 }}>
+      {t(
+        "ستختفي هذه الرسالة الترحيبية تلقائيًا بعد 20 ثانية.",
+        "This welcome message will automatically disappear after 60 seconds."
+      )}
+    </div>
+    <h2>
+      {t("مرحبًا بك في لعبة XO!", "Welcome to XO Game!")}
+    </h2>
+    <div style={{ fontWeight: 600, color: "#1976d2", marginBottom: 8 }}>
+     
+    </div>
+    <p>
+      {t(
+        "لعبة XO تقدم لك تجربة جديدة للعبة إكس-أو الكلاسيكية، مع أسئلة تعليمية باللغة العربية والإنجليزية لتحدي عقلك أثناء اللعب. استمتع بالتنافس مع الأصدقاء أو الكمبيوتر، وطور معرفتك مع كل حركة!",
+        "XO Game is a unique twist on the classic Tic-Tac-Toe, offering both English and Arabic questions to challenge your mind while you play. Enjoy competing with friends or the computer, and improve your knowledge with every move!"
+      )}
+    </p>
+    <h3>
+      {t("كيفية اللعب", "How to Play")}
+    </h3>
+    <ul>
+      <li>{t("اختر اللغة والفئة.", "Choose your language and category.")}</li>
+      <li>{t("أجب عن الأسئلة لتحصل على دورك في اللوحة.", "Answer questions to earn your move on the board.")}</li>
+      <li>{t("أول من يحصل على ثلاثة رموز متتالية يفوز!", "First to get three in a row wins!")}</li>
+    </ul>
+  </section>
+)}
           <div className="xo-lang-selector">
   <label htmlFor="lang">{t('اللغة:', 'Language:')}</label>
   <button
