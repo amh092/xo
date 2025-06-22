@@ -269,3 +269,36 @@ body{
   justify-content: center;
   
 }
+
+/* Base styling for nav stays the same */
+.xo-nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  direction: inherit; /* Inherit from parent/container */
+}
+
+/* Support for RTL (Arabic) */
+[dir="rtl"] .xo-nav ul {
+  flex-direction: row-reverse;
+}
+
+/* Support for LTR (English) */
+[dir="ltr"] .xo-nav ul {
+  flex-direction: row;
+}
+
+/* Optional: font for Arabic */
+[dir="rtl"] .xo-nav a {
+  font-family: 'Cairo', 'Tajawal', Arial, sans-serif;
+  text-align: right;
+}
+
+/* Optional: font for English */
+[dir="ltr"] .xo-nav a {
+  font-family: 'Inter', Arial, sans-serif;
+  text-align: left;
+}

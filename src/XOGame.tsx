@@ -3,7 +3,7 @@ import './XOGame.css';
 import { AR_QUESTIONS, AR_CATEGORIES } from './questions_ar';
 import { EN_QUESTIONS, EN_CATEGORIES } from './questions_en';
 import type { Question } from './questions_ar';
-
+import { Link } from 'react-router-dom';
 const XOGame: React.FC = () => {
   const [questionMode, setQuestionMode] = useState<boolean>(true);
 
@@ -234,6 +234,19 @@ const XOGame: React.FC = () => {
 
   return (
     <div className="xo-game-container" dir={dir}>
+      <nav className="xo-nav">
+        <ul>
+        <li>
+  <Link to="/">{t('الرئيسية', 'Home')}</Link>
+</li>
+<li>
+  <Link to="/about">{t('حول', 'About')}</Link>
+</li>
+<li>
+  <Link to="/contact">{t('اتصل بنا', 'Contact')}</Link>
+</li>
+        </ul>
+      </nav>
       <header className="xo-header">
         <div className="xo-header-row">
           
