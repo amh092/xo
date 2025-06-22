@@ -20,7 +20,7 @@ const XOGame: React.FC = () => {
   const [feedback, setFeedback] = useState<string | null>(null);
   const [pendingMoveIndex, setPendingMoveIndex] = useState<number | null>(null);
   const [welcomeSeconds, setWelcomeSeconds] = useState(0);
-
+  const [selectedDifficulty, setSelectedDifficulty] = useState<'all' | 'easy' | 'medium' | 'hard'>('all');
 useEffect(() => {
   const interval = setInterval(() => {
     setWelcomeSeconds((prev) => prev + 1);
@@ -37,8 +37,9 @@ useEffect(() => {
     return symbol;
   };
   const categories = language === 'ar' ? AR_CATEGORIES : EN_CATEGORIES;
-  const currentQuestions = (language === 'ar' ? AR_QUESTIONS : EN_QUESTIONS).filter(q => selectedCategory === 'all' || q.category === selectedCategory);
-  // Track shuffled questions and index
+  const currentQuestions = (language === 'ar' ? AR_QUESTIONS : EN_QUESTIONS)
+  .filter(q => (selectedCategory === 'all' || q.category === selectedCategory))
+  .filter(q => (selectedDifficulty === 'all' || q.difficulty === selectedDifficulty));  // Track shuffled questions and index
   const shuffledQuestionsRef = React.useRef<Question[]>([]);
   const questionIndexRef = React.useRef<number>(0);
   const usedQuestionsRef = React.useRef<Set<number>>(new Set());
@@ -289,7 +290,7 @@ useEffect(() => {
   </section>
 )}
           <div className="xo-lang-selector">
-  <label htmlFor="lang">{t('اللغة:', 'Language:')}</label>
+  <label htmlFor="lang">{t('اللغة', 'Language:')}</label>
   <button
     className="xo-lang-toggle"
     type="button"
@@ -302,7 +303,7 @@ useEffect(() => {
         </div>
         <div className="xo-header-row xo-mode-row">
   <div className="xo-mode-selector">
-    <label htmlFor="mode">{t('الوضع:', 'Mode:')} :</label>
+    <label htmlFor="mode">{t('الوضع', 'Mode')} </label>
     <select
       id="mode"
       value={mode}
@@ -311,6 +312,7 @@ useEffect(() => {
       <option value="pvp">{t('لاعب ضد لاعب', 'Player vs Player')}</option>
       <option value="cpu">{t('لاعب ضد الكمبيوتر', 'Player vs Computer')}</option>
     </select>
+    
   </div>
   <div className="xo-question-toggle">
     <label htmlFor="questionModeToggle" style={{marginLeft: 10}}>{t('وضع الأسئلة', 'Question Mode')}:</label>
@@ -324,7 +326,7 @@ useEffect(() => {
     <span style={{marginLeft: 6, fontWeight: 500, color: '#1976d2'}}>{questionMode ? t('مفعل', 'On') : t('إيقاف', 'Off')}</span>
   </div>
           <div className="xo-category-selector">
-            <label htmlFor="category">{t('التصنيف:', 'Category:')}</label>
+            <label htmlFor="category">{t('التصنيف', 'Category')}</label>
             <select
               id="category"
               value={selectedCategory}
@@ -335,7 +337,25 @@ useEffect(() => {
               ))}
             </select>
           </div>
-        </div>
+         
+ 
+          <div className="xo-category-selector" style={{ margin: "0 16px" }}>
+  <label htmlFor="difficulty">{t("الصعوبة:", "Difficulty:")}</label>
+  <select
+    id="difficulty"
+    value={selectedDifficulty}
+    onChange={e => setSelectedDifficulty(e.target.value as 'all' | 'easy' | 'medium' | 'hard')}
+    style={{ marginLeft: 8 }}
+  >
+    <option value="all">{t("الكل", "All")}</option>
+    <option value="easy">{t("سهل", "Easy")}</option>
+    <option value="medium">{t("متوسط", "Medium")}</option>
+    <option value="hard">{t("صعب", "Hard")}</option>
+  </select>
+</div>
+</div>
+      
+        
       </header>
 
       <div className="status">

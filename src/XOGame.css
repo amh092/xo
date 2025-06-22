@@ -329,3 +329,9 @@ body{
   padding-left: 20px;
   margin-bottom: 0;
 }
+
+.xo-difficulty-selector label {
+  font-weight: 500;
+  margin-right: 8px;
+  width: 30px;
+}
