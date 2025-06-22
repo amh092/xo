@@ -55,5 +55,28 @@ export const EN_QUESTIONS: Question[] = [
   { question: "What gas do humans exhale?", choices: ["Carbon Dioxide", "Oxygen", "Hydrogen", "Nitrogen"], answer: "Carbon Dioxide", category: 'Science', difficulty: 'easy' },
 
   // Technology
-  { question: "Who founded Microsoft?", choices: ["Bill Gates", "Steve Jobs", "Mark Zuckerberg", "Larry Page"], answer: "Bill Gates", category: 'Technology', difficulty: 'easy' }
-];
+  { question: "Who founded Microsoft?", choices: ["Bill Gates", "Steve Jobs", "Mark Zuckerberg", "Larry Page"], answer: "Bill Gates", category: 'Technology', difficulty: 'easy' },
+
+  { question: "What is the highest mountain in the solar system?", choices: ["Olympus Mons", "Mauna Kea", "Mount Everest", "K2"], answer: "Olympus Mons", category: 'Science', difficulty: 'easy' },
+  { question: "What is the largest living structure on Earth?", choices: ["The Great Barrier Reef", "The Amazon Rainforest", "The Grand Canyon", "The Great Wall of China"], answer: "The Great Barrier Reef", category: 'Science', difficulty: 'easy' },
+  { question: "What is the process by which water moves through a plant?", choices: ["Transpiration", "Photosynthesis", "Respiration", "Osmosis"], answer: "Transpiration", category: 'Science', difficulty: 'easy' },
+  { question: "What is the chemical symbol for silver?", choices: ["Ag", "Au", "Hg", "Pb"], answer: "Ag", category: 'Science', difficulty: 'easy' },
+  { question: "What is the largest planet in our solar system?", choices: ["Jupiter", "Saturn", "Uranus", "Neptune"], answer: "Jupiter", category: 'Science', difficulty: 'easy' },
+  { question: "What is the process by which an organism's genetic information is passed from one generation to the next?", choices: ["Genetic Drift", "Natural Selection", "Artificial Selection", "Genetic Variation"], answer: "Genetic Variation", category: 'Science', difficulty: 'easy' },
+  { question: "What is the scientific term for the study of the structure, behavior, and evolution of the universe?", choices: ["Cosmology", "Astrology", "Astronomy", "Geology"], answer: "Cosmology", category: 'Science', difficulty: 'easy' },
+  { question: "What is the scientific term for the study of the structure, behavior, and evolution of the Earth?", choices: ["Geology", "Meteorology", "Oceanography", "Paleontology"], answer: "Geology", category: 'Science', difficulty: 'easy' },
+  { question: "What is the scientific term for the study of the weather?", choices: ["Meteorology", "Climatology", "Oceanography", "Hydrology"], answer: "Meteorology", category: 'Science', difficulty: 'easy' },
+  { question: "What is the name of the Apple operating system for mobile devices?", choices: ["iOS", "macOS", "watchOS", "tvOS"], answer: "iOS", category: 'Technology', difficulty: 'medium' },
+  { question: "What is the name of the Apple virtual assistant?", choices: ["Siri", "Alexa", "Google Assistant", "Cortana"], answer: "Siri", category: 'Technology', difficulty: 'medium' },
+  { question: "What is the name of the club that Lionel Messi plays for?", choices: ["Barcelona", "Real Madrid", "Manchester United", "Paris Saint-Germain"], answer: "Barcelona", category: 'Sports', difficulty: 'easy' },
+  { question: "How many Ballon d'Or has Lionel Messi won?", choices: ["5", "6", "7", "8"], answer: "7", category: 'Sports', difficulty: 'easy' },
+  { question: "What was the childhood disease that Lionel Messi was diagnosed with?", choices: ["Growth hormone deficiency", "Asthma", "Diabetes", "Glaucoma"], answer: "Growth hormone deficiency", category: 'Sports', difficulty: 'easy' },
+  { question: "Who won the Ballon d'Or in 1994?", choices: ["Hristo Stoichkov", "Paolo Maldini", "Roberto Baggio", "Gheorghe Hagi"], answer: "Hristo Stoichkov", category: 'Sports', difficulty: 'easy' },
+  { question: "What was the position of the player who won the Ballon d'Or in 1994?", choices: ["Forward", "Midfielder", "Defender", "Goalkeeper"], answer: "Forward", category: 'Sports', difficulty: 'easy' },
+  { question: "What was the name of the club that the player who won the Ballon d'Or in 1994 played for?", choices: ["Barcelona", "Real Madrid", "Juventus", "AC Milan"], answer: "Barcelona", category: 'Sports', difficulty: 'easy' },
+  { question: "What was the nationality of the player who won the Ballon d'Or in 1994?", choices: ["Spanish", "Italian", "Bulgarian", "French"], answer: "Bulgarian", category: 'Sports', difficulty: 'easy' },
+
+  { question: "What is the highest-scoring match in football history?", choices: ["Australia vs. American Samoa", "Brazil vs. Iceland", "Germany vs. Brazil", "Spain vs. Tahiti"], answer: "Australia vs. American Samoa", category: 'Sports', difficulty: 'hard' },
+  
+
+]
