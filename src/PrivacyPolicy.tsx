@@ -1,4 +1,4 @@
-import React from "react";
+
 
 const PrivacyPolicy = ({ language = "en" }: { language?: "en" | "ar" }) => (
   <main style={{ padding: 24, maxWidth: 700, margin: "auto" }}>
