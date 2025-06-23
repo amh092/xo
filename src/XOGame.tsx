@@ -158,20 +158,31 @@ const categories = useMemo(() => {
 
   // Handle click on board
   const handleSquareClick = (idx: number) => {
-    if (board[idx] || winner || isCpuThinking) return;
+    if (winner || isCpuThinking) return;
     if (mode === 'cpu' && !isXNext) return;
+  
+    const currentSymbol = isXNext ? 'X' : 'O';
+   
+  
     if (!questionMode) {
-      // Classic mode: allow direct move
+      // Classic mode: allow move only on empty
+      if (board[idx]) return;
       const newBoard = board.slice();
-      newBoard[idx] = isXNext ? 'X' : 'O';
+      newBoard[idx] = currentSymbol;
       setBoard(newBoard);
       setIsXNext(!isXNext);
       return;
     }
   
-    // Question mode: save the square index, then ask the question
+    // Question mode
+    if (board[idx] === currentSymbol) {
+      // Can't take your own square
+      return;
+    }
+  
+    // If empty or opponent's, allow question attempt
     setPendingSquare(idx);
-    askQuestion(isXNext ? 'X' : 'O');
+    askQuestion(currentSymbol);
   };
 
   // Handle answer submission
@@ -371,13 +382,17 @@ const categories = useMemo(() => {
               const idx = row * 3 + col;
               return (
                 <button
-                  key={idx}
-                  className="square"
-                  onClick={() => handleSquareClick(idx)}
-                  disabled={!!board[idx] || !!winner || (mode === 'cpu' && !isXNext) || showModal}
-                >
-                  {board[idx]}
-                </button>
+                className="square"
+                disabled={
+                  !!winner ||
+                  !!isCpuThinking ||
+                  (mode === 'cpu' && !isXNext) ||
+                  (questionMode && board[idx] === (isXNext ? 'X' : 'O'))
+                }
+                onClick={() => handleSquareClick(idx)}
+              >
+                {board[idx]}
+              </button>
               );
             })}
           </div>
