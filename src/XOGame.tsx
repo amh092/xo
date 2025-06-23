@@ -22,6 +22,7 @@ const XOGame: React.FC = () => {
   const [isChoiceCorrect, setIsChoiceCorrect] = useState<boolean | null>(null);
   const [welcomeSeconds, setWelcomeSeconds] = useState(0);
   const [selectedDifficulty, setSelectedDifficulty] = useState<'all' | 'easy' | 'medium' | 'hard'>('all');
+
 useEffect(() => {
   const interval = setInterval(() => {
     setWelcomeSeconds((prev) => prev + 1);
@@ -56,7 +57,7 @@ useEffect(() => {
     shuffledQuestionsRef.current = shuffled;
     questionIndexRef.current = 0;
     usedQuestionsRef.current = new Set();
-  }, [language, selectedCategory]);
+  }, [language, selectedCategory, selectedDifficulty, currentQuestions]);
   const dir = language === 'ar' ? 'rtl' : 'ltr';
 
   // Shuffle choices whenever a new question is set
