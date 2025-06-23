@@ -346,3 +346,41 @@ body{
   color: #fff !important;
   border: 2px solid #b71c1c !important;
 }
+
+.xo-overwrite-toggle {
+  margin-left: 16px;
+  position: relative;
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #f8f8f8;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: background 0.2s;
+}
+
+.xo-overwrite-toggle label {
+  font-weight: 500;
+  margin-right: 6px;
+  color: #333;
+}
+
+.xo-overwrite-toggle input[type="checkbox"] {
+  accent-color: #1976d2;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
+
+.xo-overwrite-toggle div {
+  position: absolute;
+  left: 0;
+  top: 120%;
+  background: #222;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
