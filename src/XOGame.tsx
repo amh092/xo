@@ -39,6 +39,7 @@ useEffect(() => {
     }
   }, [question]);
   // Helper for localized UI strings
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const t = (ar: string, en: string) => (language === 'ar' ? ar : en);
   const playerName = (symbol: 'X' | 'O') => {
     if (language === 'ar') return symbol === 'X' ? 'إكس' : 'أو';
@@ -124,7 +125,7 @@ const categories = useMemo(() => {
 
   // Ask a question before player's move
   const askQuestion = useCallback(
-    (forPlayer: 'X' | 'O', hardOnly = false) => {
+    (_forPlayer: 'X' | 'O', hardOnly = false) => {
       let availableQuestions = currentQuestions;
   
       // If this is an overwrite attempt and the game mode isn't already 'hard', filter to only hard questions
