@@ -14,7 +14,8 @@ const XOGame: React.FC = () => {
   const [isXNext, setIsXNext] = useState(true);
   const [mode, setMode] = useState<'pvp' | 'cpu'>('pvp');
   const [pendingSquare, setPendingSquare] = useState<number | null>(null);
-
+  const [overwriteEnabled, setOverwriteEnabled] = useState(false);
+  const [showOverwriteTip, setShowOverwriteTip] = useState(false);
   const [isCpuThinking, setIsCpuThinking] = useState(false);
   const [question, setQuestion] = useState<Question | null>(null);
   const [showModal, setShowModal] = useState(false);
@@ -122,39 +123,29 @@ const categories = useMemo(() => {
   }, []);
 
   // Ask a question before player's move
-  const askQuestion = useCallback((forPlayer: 'X' | 'O') => {
-    console.log(forPlayer);
-    // Use shuffled questions, ensure each is only asked once per game
-    if (!shuffledQuestionsRef.current.length) {
-      shuffledQuestionsRef.current = [...currentQuestions].sort(() => Math.random() - 0.5);
-      questionIndexRef.current = 0;
-      usedQuestionsRef.current = new Set();
-    }
-    // Find the next unused question
-    let idx = questionIndexRef.current;
-    let found = false;
-    for (let i = 0; i < shuffledQuestionsRef.current.length; i++) {
-      const tryIdx = (idx + i) % shuffledQuestionsRef.current.length;
-      if (!usedQuestionsRef.current.has(tryIdx)) {
-        idx = tryIdx;
-        found = true;
-        break;
+  const askQuestion = useCallback(
+    (forPlayer: 'X' | 'O', hardOnly = false) => {
+      let availableQuestions = currentQuestions;
+  
+      // If this is an overwrite attempt and the game mode isn't already 'hard', filter to only hard questions
+      if (hardOnly && selectedDifficulty !== 'hard') {
+        availableQuestions = availableQuestions.filter(q => q.difficulty === 'hard');
       }
-    }
-    if (!found) {
-      // All used, reshuffle
-      shuffledQuestionsRef.current = [...currentQuestions].sort(() => Math.random() - 0.5);
-      usedQuestionsRef.current = new Set();
-      idx = 0;
-    }
-    usedQuestionsRef.current.add(idx);
-    questionIndexRef.current = idx + 1;
-    const q = shuffledQuestionsRef.current[idx];
-    setQuestion(q);
-    setSelectedChoice(null);
-    setShowModal(true);
-   
-  }, [currentQuestions]);
+  
+      if (!availableQuestions.length) {
+        setQuestion(null);
+        setShowModal(false);
+        return;
+      }
+  
+      // Pick a random question from availableQuestions
+      const idx = Math.floor(Math.random() * availableQuestions.length);
+      setQuestion(availableQuestions[idx]);
+      setSelectedChoice(null);
+      setShowModal(true);
+    },
+    [currentQuestions, selectedDifficulty]
+  );
 
   // Handle click on board
   const handleSquareClick = (idx: number) => {
@@ -162,10 +153,8 @@ const categories = useMemo(() => {
     if (mode === 'cpu' && !isXNext) return;
   
     const currentSymbol = isXNext ? 'X' : 'O';
-   
   
     if (!questionMode) {
-      // Classic mode: allow move only on empty
       if (board[idx]) return;
       const newBoard = board.slice();
       newBoard[idx] = currentSymbol;
@@ -174,17 +163,21 @@ const categories = useMemo(() => {
       return;
     }
   
-    // Question mode
     if (board[idx] === currentSymbol) {
-      // Can't take your own square
       return;
     }
   
-    // If empty or opponent's, allow question attempt
+    // Only allow overwrite if enabled
+    const isOverwriteAttempt = board[idx] !== null && board[idx] !== currentSymbol;
+    if (isOverwriteAttempt && !overwriteEnabled) {
+      // Optionally, show a message to the user here
+      return;
+    }
+  
     setPendingSquare(idx);
-    askQuestion(currentSymbol);
-  };
 
+    askQuestion(currentSymbol, isOverwriteAttempt);
+  };
   // Handle answer submission
   const handleChoice = (idx: number) => {
     setSelectedChoice(idx);
@@ -315,6 +308,44 @@ const categories = useMemo(() => {
     </select>
     
   </div>
+  <div
+  className="xo-overwrite-toggle"
+  style={{ marginLeft: 16, position: 'relative', display: 'inline-block' }}
+  onMouseEnter={() => setShowOverwriteTip(true)}
+  onMouseLeave={() => setShowOverwriteTip(false)}
+>
+  <label htmlFor="overwriteToggle" style={{ marginRight: 6 }}>
+    {t('السماح بالاستيلاء على مربعات الخصم', 'Allow Overwrite Mode')}
+  </label>
+  <input
+    id="overwriteToggle"
+    type="checkbox"
+    checked={overwriteEnabled}
+    onChange={e => setOverwriteEnabled(e.target.checked)}
+  />
+  {showOverwriteTip && (
+    <div
+      style={{
+        position: 'absolute',
+        left: 0,
+        top: '120%',
+        background: '#222',
+        color: '#fff',
+        padding: '6px 12px',
+        borderRadius: 6,
+        fontSize: 14,
+        whiteSpace: 'nowrap',
+        zIndex: 1000,
+        boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+      }}
+    >
+      {t(
+        'عند تفعيل هذا الخيار، يتطلب الاستيلاء على مربع الخصم إجابة على سؤال صعب.',
+        'When this option is enabled, overwriting an opponent’s square will require a hard question.'
+      )}
+    </div>
+  )}
+</div>
   <div className="xo-question-toggle">
     <label htmlFor="questionModeToggle" style={{marginLeft: 10}}>{t('وضع الأسئلة', 'Question Mode')}:</label>
     <input
@@ -387,9 +418,18 @@ const categories = useMemo(() => {
                   !!winner ||
                   !!isCpuThinking ||
                   (mode === 'cpu' && !isXNext) ||
-                  (questionMode && board[idx] === (isXNext ? 'X' : 'O'))
+                  (questionMode && board[idx] === (isXNext ? 'X' : 'O')) ||
+                  (questionMode && board[idx] !== null && board[idx] !== (isXNext ? 'X' : 'O') && !overwriteEnabled)
                 }
                 onClick={() => handleSquareClick(idx)}
+                title={
+                  questionMode && overwriteEnabled && board[idx] !== null && board[idx] !== (isXNext ? 'X' : 'O')
+                    ? t(
+                        'الاستيلاء على هذا المربع يتطلب سؤالاً صعباً.',
+                        'Overwriting this square will require a hard question.'
+                      )
+                    : undefined
+                }
               >
                 {board[idx]}
               </button>
