@@ -6,15 +6,6 @@ export interface Question {
   difficulty: 'easy' | 'medium' | 'hard';
 }
 
-export const AR_CATEGORIES = [
-  { value: 'all', label: 'الكل' },
-  { value: 'جغرافيا', label: 'جغرافيا' },
-  { value: 'علوم', label: 'علوم' },
-  { value: 'تاريخ', label: 'تاريخ' },
-  { value: 'رياضة', label: 'رياضة' },
-  { value: 'عام', label: 'عام' },
-  { value: 'إسلاميات', label: 'إسلاميات' }
-];
 
 export const AR_QUESTIONS: Question[] = [
   { question: "ما هي عاصمة المملكة العربية السعودية؟", choices: ["الرياض", "جدة", "الدمام", "مكة"], answer: "الرياض", category: "جغرافيا", difficulty: 'easy' },

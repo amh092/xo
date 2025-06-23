@@ -1,13 +1,5 @@
 import type { Question } from './questions_ar';
 
-export const EN_CATEGORIES = [
-  { value: 'all', label: 'All' },
-  { value: 'Geography', label: 'Geography' },
-  { value: 'Science', label: 'Science' },
-  { value: 'History', label: 'History' },
-  { value: 'Sports', label: 'Sports' },
-  { value: 'General', label: 'General' }
-];
 
 export const EN_QUESTIONS: Question[] = [
   { question: "Which country hosts the Tour de France?", choices: ["France", "Italy", "Spain", "Germany"], answer: "France", category: 'Geography', difficulty: 'easy' },

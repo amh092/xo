@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import './XOGame.css';
-import { AR_QUESTIONS, AR_CATEGORIES } from './questions_ar';
-import { EN_QUESTIONS, EN_CATEGORIES } from './questions_en';
+import { AR_QUESTIONS } from './questions_ar';
+import { EN_QUESTIONS } from './questions_en';
 import { Suspense } from 'react';
 import type { Question } from './questions_ar';
 import { Link } from 'react-router-dom';
@@ -43,10 +43,12 @@ useEffect(() => {
     if (language === 'ar') return symbol === 'X' ? 'إكس' : 'أو';
     return symbol;
   };
-  const categories = language === 'ar' ? AR_CATEGORIES : EN_CATEGORIES;
-  const currentQuestions = (language === 'ar' ? AR_QUESTIONS : EN_QUESTIONS)
-  .filter(q => (selectedCategory === 'all' || q.category === selectedCategory))
-  .filter(q => (selectedDifficulty === 'all' || q.difficulty === selectedDifficulty));  // Track shuffled questions and index
+  
+  const currentQuestions = language === 'ar' ? AR_QUESTIONS : EN_QUESTIONS;
+const categories = useMemo(() => {
+  const cats = Array.from(new Set(currentQuestions.map(q => q.category)));
+  return [{ value: 'all', label: t('الكل', 'All') }, ...cats.map(cat => ({ value: cat, label: cat }))];
+}, [currentQuestions,t]);
   const shuffledQuestionsRef = React.useRef<Question[]>([]);
   const questionIndexRef = React.useRef<number>(0);
   const usedQuestionsRef = React.useRef<Set<number>>(new Set());
