@@ -326,19 +326,7 @@ const categories = useMemo(() => {
   />
   {showOverwriteTip && (
     <div
-      style={{
-        position: 'absolute',
-        left: 0,
-        top: '120%',
-        background: '#222',
-        color: '#fff',
-        padding: '6px 12px',
-        borderRadius: 6,
-        fontSize: 14,
-        whiteSpace: 'nowrap',
-        zIndex: 1000,
-        boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
-      }}
+     className="xo-tooltip"
     >
       {t(
         'عند تفعيل هذا الخيار، يتطلب الاستيلاء على مربع الخصم إجابة على سؤال صعب.',

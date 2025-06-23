@@ -384,3 +384,21 @@ body{
   z-index: 10;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
+
+.xo-overwrite-toggle .xo-tooltip {
+  position: absolute;
+  left: 0;
+  top: 120%;
+  background: #222;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  width: max-content;
+  max-width: 260px; /* or any value you prefer */
+  white-space: normal; /* allow wrapping */
+  word-break: break-word;
+  box-sizing: border-box;
+}
