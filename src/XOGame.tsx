@@ -5,6 +5,7 @@ import { EN_QUESTIONS } from './questions_en';
 import { Suspense } from 'react';
 import type { Question } from './questions_ar';
 import { Link } from 'react-router-dom';
+import SettingIcon from './SettingIcon';
 const XOGame: React.FC = () => {
   const [questionMode, setQuestionMode] = useState<boolean>(true);
 
@@ -23,7 +24,7 @@ const XOGame: React.FC = () => {
   const [isChoiceCorrect, setIsChoiceCorrect] = useState<boolean | null>(null);
   const [welcomeSeconds, setWelcomeSeconds] = useState(0);
   const [selectedDifficulty, setSelectedDifficulty] = useState<'all' | 'easy' | 'medium' | 'hard'>('all');
-
+  const [showSettings, setShowSettings] = useState(false);
 useEffect(() => {
   const interval = setInterval(() => {
     setWelcomeSeconds((prev) => prev + 1);
@@ -252,139 +253,144 @@ useEffect(() => {
   <Link to="/contact">{t('اتصل بنا', 'Contact')}</Link>
 </li>
         </ul>
+        <SettingIcon onClick={() => setShowSettings(!showSettings) } />
       </nav>
-     
-      <header className="xo-header">
-        <div className="xo-header-row">
-          <Suspense fallback={<div>Loading...</div>}>
-        {welcomeSeconds <= 60 && (
-
-   
-  <section className="xo-intro">
-    <div style={{ fontWeight: 500, color: "#e65100", marginBottom: 8 }}>
-      {t(
-        "ستختفي هذه الرسالة الترحيبية تلقائيًا بعد 20 ثانية.",
-        "This welcome message will automatically disappear after 60 seconds."
-      )}
-    </div>
-    <h2>
-      {t("مرحبًا بك في لعبة XO!", "Welcome to XO Game!")}
-    </h2>
-    <div style={{ fontWeight: 600, color: "#1976d2", marginBottom: 8 }}>
-     
-    </div>
-    <p>
-      {t(
-        "لعبة XO تقدم لك تجربة جديدة للعبة إكس-أو الكلاسيكية، مع أسئلة تعليمية باللغة العربية والإنجليزية لتحدي عقلك أثناء اللعب. استمتع بالتنافس مع الأصدقاء أو الكمبيوتر، وطور معرفتك مع كل حركة!",
-        "XO Game is a unique twist on the classic Tic-Tac-Toe, offering both English and Arabic questions to challenge your mind while you play. Enjoy competing with friends or the computer, and improve your knowledge with every move!"
-      )}
-    </p>
-    <h3>
-      {t("كيفية اللعب", "How to Play")}
-    </h3>
-    <ul>
-      <li>{t("اختر اللغة والفئة.", "Choose your language and category.")}</li>
-      <li>{t("أجب عن الأسئلة لتحصل على دورك في اللوحة.", "Answer questions to earn your move on the board.")}</li>
-      <li>{t("أول من يحصل على ثلاثة رموز متتالية يفوز!", "First to get three in a row wins!")}</li>
-    </ul>
-  </section>
-)}
-</Suspense>
-          <div className="xo-lang-selector">
-  <label htmlFor="lang">{t('اللغة', 'Language:')}</label>
-  <button
-    className="xo-lang-toggle"
-    type="button"
-    onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
-    aria-label={language === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}
-  >
-    {language === 'ar' ? 'English' : 'العربية'}
-  </button>
-</div>
-        </div>
-        <div className="xo-header-row xo-mode-row">
-  <div className="xo-mode-selector">
-    <label htmlFor="mode">{t('الوضع', 'Mode')} </label>
-    <select
-      id="mode"
-      value={mode}
-      onChange={e => setMode(e.target.value as 'pvp' | 'cpu')}
-    >
-      <option value="pvp">{t('لاعب ضد لاعب', 'Player vs Player')}</option>
-      <option value="cpu">{t('لاعب ضد الكمبيوتر', 'Player vs Computer')}</option>
-    </select>
     
-  </div>
-  <div
-  className="xo-overwrite-toggle"
-  style={{ marginLeft: 16, position: 'relative', display: 'inline-block' }}
-  onMouseEnter={() => setShowOverwriteTip(true)}
-  onMouseLeave={() => setShowOverwriteTip(false)}
->
-  <label htmlFor="overwriteToggle" style={{ marginRight: 6 }}>
-    {t('السماح بالاستيلاء على مربعات الخصم', 'Allow Overwrite Mode')}
-  </label>
-  <input
-    id="overwriteToggle"
-    type="checkbox"
-    checked={overwriteEnabled}
-    onChange={e => setOverwriteEnabled(e.target.checked)}
-  />
-  {showOverwriteTip && (
-    <div
-     className="xo-tooltip"
-    >
-      {t(
-        'عند تفعيل هذا الخيار، يتطلب الاستيلاء على مربع الخصم إجابة على سؤال صعب.',
-        'When this option is enabled, overwriting an opponent’s square will require a hard question.'
-      )}
-    </div>
-  )}
-</div>
-  <div className="xo-question-toggle">
-    <label htmlFor="questionModeToggle" style={{marginLeft: 10}}>{t('وضع الأسئلة', 'Question Mode')}:</label>
-    <input
-      id="questionModeToggle"
-      type="checkbox"
-      checked={questionMode}
-      onChange={() => setQuestionMode(q => !q)}
-      style={{marginLeft: 6, transform: 'scale(1.2)'}}
-    />
-    <span style={{marginLeft: 6, fontWeight: 500, color: '#1976d2'}}>{questionMode ? t('مفعل', 'On') : t('إيقاف', 'Off')}</span>
-  </div>
-          <div className="xo-category-selector">
-            <label htmlFor="category">{t('التصنيف', 'Category')}</label>
-            <select
-  id="category"
-  value={selectedCategory}
-  onChange={e => setSelectedCategory(e.target.value)}
->
-  {categories.map(cat => (
-    <option key={cat.value} value={cat.value}>{cat.label}</option>
-  ))}
-</select>
+      <header className="xo-header">
+  <div className="xo-header-row">
+    <Suspense fallback={<div>Loading...</div>}>
+      {welcomeSeconds <= 60 && (
+        <section className="xo-intro">
+          <div style={{ fontWeight: 500, color: "#e65100", marginBottom: 8 }}>
+            {t(
+              "ستختفي هذه الرسالة الترحيبية تلقائيًا بعد 20 ثانية.",
+              "This welcome message will automatically disappear after 60 seconds."
+            )}
           </div>
-         
- 
-          <div className="xo-category-selector" style={{ margin: "0 16px" }}>
-  <label htmlFor="difficulty">{t("الصعوبة:", "Difficulty:")}</label>
-  <select
-    id="difficulty"
-    value={selectedDifficulty}
-    onChange={e => setSelectedDifficulty(e.target.value as 'all' | 'easy' | 'medium' | 'hard')}
-    style={{ marginLeft: 8 }}
-  >
-    <option value="all">{t("الكل", "All")}</option>
-    <option value="easy">{t("سهل", "Easy")}</option>
-    <option value="medium">{t("متوسط", "Medium")}</option>
-    <option value="hard">{t("صعب", "Hard")}</option>
-  </select>
-</div>
-</div>
-      
-        
-      </header>
+          <h2>{t("مرحبًا بك في لعبة XO!", "Welcome to XO Game!")}</h2>
+          <p style={{ fontWeight: 600, color: "#1976d2", marginBottom: 8 }}></p>
+          <p>
+            {t(
+              "لعبة XO تقدم لك تجربة جديدة للعبة إكس-أو الكلاسيكية، مع أسئلة تعليمية باللغة العربية والإنجليزية لتحدي عقلك أثناء اللعب. استمتع بالتنافس مع الأصدقاء أو الكمبيوتر، وطور معرفتك مع كل حركة!",
+              "XO Game is a unique twist on the classic Tic-Tac-Toe, offering both English and Arabic questions to challenge your mind while you play. Enjoy competing with friends or the computer, and improve your knowledge with every move!"
+            )}
+          </p>
+          <h3>{t("كيفية اللعب", "How to Play")}</h3>
+          <ul>
+            <li>{t("اختر اللغة والفئة.", "Choose your language and category.")}</li>
+            <li>{t("أجب عن الأسئلة لتحصل على دورك في اللوحة.", "Answer questions to earn your move on the board.")}</li>
+            <li>{t("أول من يحصل على ثلاثة رموز متتالية يفوز!", "First to get three in a row wins!")}</li>
+          </ul>
+        </section>
+      )}
+    </Suspense>
 
+    {showSettings && (
+      <>
+        <div className="xo-lang-selector">
+          <label htmlFor="lang">{t("اللغة", "Language:")}</label>
+          <button
+            className="xo-lang-toggle"
+            type="button"
+            onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
+            aria-label={language === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}
+          >
+            {language === 'ar' ? 'English' : 'العربية'}
+          </button>
+        </div>
+
+        <div className="xo-header-row xo-mode-row">
+          <div className="xo-mode-selector">
+            <label htmlFor="mode">{t("الوضع", "Mode")}</label>
+            <select
+              id="mode"
+              value={mode}
+              onChange={e => setMode(e.target.value as 'pvp' | 'cpu')}
+            >
+              <option value="pvp">{t("لاعب ضد لاعب", "Player vs Player")}</option>
+              <option value="cpu">{t("لاعب ضد الكمبيوتر", "Player vs Computer")}</option>
+            </select>
+          </div>
+
+          <div
+            className="xo-overwrite-toggle"
+            style={{ marginLeft: 16, position: 'relative', display: 'inline-block' }}
+            onMouseEnter={() => setShowOverwriteTip(true)}
+            onMouseLeave={() => setShowOverwriteTip(false)}
+          >
+            <label htmlFor="overwriteToggle" style={{ marginRight: 6 }}>
+              {t("السماح بالاستيلاء على مربعات الخصم", "Allow Overwrite Mode")}
+            </label>
+            <input
+              id="overwriteToggle"
+              type="checkbox"
+              checked={overwriteEnabled}
+              onChange={e => setOverwriteEnabled(e.target.checked)}
+            />
+            {showOverwriteTip && (
+              <div className="xo-tooltip">
+                {t(
+                  "عند تفعيل هذا الخيار، يتطلب الاستيلاء على مربع الخصم إجابة على سؤال صعب.",
+                  "When this option is enabled, overwriting an opponent’s square will require a hard question."
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className="xo-question-toggle">
+            <label htmlFor="questionModeToggle" style={{ marginLeft: 10 }}>
+              {t("وضع الأسئلة", "Question Mode")}:
+            </label>
+            <input
+              id="questionModeToggle"
+              type="checkbox"
+              checked={questionMode}
+              onChange={() => setQuestionMode(q => !q)}
+              style={{ marginLeft: 6, transform: 'scale(1.2)' }}
+            />
+            <span style={{ marginLeft: 6, fontWeight: 500, color: '#1976d2' }}>
+              {questionMode ? t("مفعل", "On") : t("إيقاف", "Off")}
+            </span>
+          </div>
+
+          <div className="xo-category-selector">
+            <label htmlFor="category">{t("التصنيف", "Category")}</label>
+            <select
+              id="category"
+              value={selectedCategory}
+              onChange={e => setSelectedCategory(e.target.value)}
+            >
+              {categories.map(cat => (
+                <option key={cat.value} value={cat.value}>
+                  {cat.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="xo-category-selector" style={{ margin: "0 16px" }}>
+            <label htmlFor="difficulty">{t("الصعوبة:", "Difficulty:")}</label>
+            <select
+              id="difficulty"
+              value={selectedDifficulty}
+              onChange={e =>
+                setSelectedDifficulty(e.target.value as 'all' | 'easy' | 'medium' | 'hard')
+              }
+              style={{ marginLeft: 8 }}
+            >
+              <option value="all">{t("الكل", "All")}</option>
+              <option value="easy">{t("سهل", "Easy")}</option>
+              <option value="medium">{t("متوسط", "Medium")}</option>
+              <option value="hard">{t("صعب", "Hard")}</option>
+            </select>
+          </div>
+        </div>
+      </>
+    )}
+  </div>
+</header>
+
+  
       <div className="status">
         {winner === 'draw' ? (
           <span>{t('تعادل!', 'Draw!')}</span>
