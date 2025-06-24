@@ -46,11 +46,17 @@ useEffect(() => {
     return symbol;
   };
   
-  const currentQuestions = language === 'ar' ? AR_QUESTIONS : EN_QUESTIONS;
-const categories = useMemo(() => {
-  const cats = Array.from(new Set(currentQuestions.map(q => q.category)));
-  return [{ value: 'all', label: t('الكل', 'All') }, ...cats.map(cat => ({ value: cat, label: cat }))];
-}, [currentQuestions,t]);
+  const currentQuestions = useMemo(() => {
+    const questions = language === 'ar' ? AR_QUESTIONS : EN_QUESTIONS;
+    return selectedCategory === 'all'
+      ? questions
+      : questions.filter(q => q.category === selectedCategory);
+  }, [language, selectedCategory]);
+  const categories = useMemo(() => {
+    const questions = language === 'ar' ? AR_QUESTIONS : EN_QUESTIONS;
+    const cats = Array.from(new Set(questions.map(q => q.category)));
+    return [{ value: 'all', label: t('الكل', 'All') }, ...cats.map(cat => ({ value: cat, label: cat }))];
+  }, [language, t]);
   const shuffledQuestionsRef = React.useRef<Question[]>([]);
   const questionIndexRef = React.useRef<number>(0);
   const usedQuestionsRef = React.useRef<Set<number>>(new Set());
@@ -349,14 +355,14 @@ const categories = useMemo(() => {
           <div className="xo-category-selector">
             <label htmlFor="category">{t('التصنيف', 'Category')}</label>
             <select
-              id="category"
-              value={selectedCategory}
-              onChange={e => setSelectedCategory(e.target.value)}
-            >
-              {categories.map(cat => (
-                <option key={cat.value} value={cat.value}>{cat.label}</option>
-              ))}
-            </select>
+  id="category"
+  value={selectedCategory}
+  onChange={e => setSelectedCategory(e.target.value)}
+>
+  {categories.map(cat => (
+    <option key={cat.value} value={cat.value}>{cat.label}</option>
+  ))}
+</select>
           </div>
          
  
