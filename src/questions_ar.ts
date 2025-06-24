@@ -43,21 +43,21 @@ export const AR_QUESTIONS: Question[] = [
   { question: "كم عدد لاعبي فريق كرة القدم؟", choices: ["11", "10", "12", "9"], answer: "11", category: "رياضة", difficulty: 'easy' },
   { question: "ما هو أكبر محيط في العالم؟", choices: ["المحيط الهادئ", "المحيط الأطلسي", "المحيط الهندي", "المحيط المتجمد الشمالي"], answer: "المحيط الهادئ", category: "جغرافيا", difficulty: 'easy' },
 
-  // أسئلة دينية
-  { question: "ما هو أول أركان الإسلام؟", choices: ["الشهادتان", "الصلاة", "الزكاة", "الصوم"], answer: "الشهادتان", category: "ديني", difficulty: 'easy' },
-  { question: "كم عدد الصلوات المفروضة في اليوم؟", choices: ["خمس", "أربع", "ست", "سبع"], answer: "خمس", category: "ديني", difficulty: 'easy' },
-  { question: "ما هو اسم النبي الذي بُعث إلى قوم عاد؟", choices: ["هود", "صالح", "شعيب", "يونس"], answer: "هود", category: "ديني", difficulty: 'easy' },
-  { question: "في أي شهر يصوم المسلمون؟", choices: ["رمضان", "شعبان", "شوال", "ذو الحجة"], answer: "رمضان", category: "ديني", difficulty: 'easy' },
-  { question: "ما هي القبلة التي يتوجه إليها المسلمون في الصلاة؟", choices: ["الكعبة", "المسجد الأقصى", "المدينة المنورة", "جبل عرفات"], answer: "الكعبة", category: "ديني", difficulty: 'easy' },
-  { question: "ما هو الكتاب السماوي الذي أُنزل على النبي محمد؟", choices: ["القرآن الكريم", "الإنجيل", "التوراة", "الزبور"], answer: "القرآن الكريم", category: "ديني", difficulty: 'easy' },
+  // أسئلة اسلامية
+  { question: "ما هو أول أركان الإسلام؟", choices: ["الشهادتان", "الصلاة", "الزكاة", "الصوم"], answer: "الشهادتان", category: "اسلامي", difficulty: 'easy' },
+  { question: "كم عدد الصلوات المفروضة في اليوم؟", choices: ["خمس", "أربع", "ست", "سبع"], answer: "خمس", category: "اسلامي", difficulty: 'easy' },
+  { question: "ما هو اسم النبي الذي بُعث إلى قوم عاد؟", choices: ["هود", "صالح", "شعيب", "يونس"], answer: "هود", category: "اسلامي", difficulty: 'easy' },
+  { question: "في أي شهر يصوم المسلمون؟", choices: ["رمضان", "شعبان", "شوال", "ذو الحجة"], answer: "رمضان", category: "اسلامي", difficulty: 'easy' },
+  { question: "ما هي القبلة التي يتوجه إليها المسلمون في الصلاة؟", choices: ["الكعبة", "المسجد الأقصى", "المدينة المنورة", "جبل عرفات"], answer: "الكعبة", category: "اسلامي", difficulty: 'easy' },
+  { question: "ما هو الكتاب السماوي الذي أُنزل على النبي محمد؟", choices: ["القرآن الكريم", "الإنجيل", "التوراة", "الزبور"], answer: "القرآن الكريم", category: "اسلامي", difficulty: 'easy' },
 
-  // أسئلة إسلاميات صعبة
-  { question: "ما هو اسم الغزوة التي وقعت في شهر رمضان في السنة الثانية للهجرة؟", choices: ["غزوة بدر", "غزوة أحد", "غزوة تبوك", "غزوة الخندق"], answer: "غزوة بدر", category: "إسلاميات", difficulty: 'hard' },
-  { question: "كم كان عمر النبي محمد عند البعثة؟", choices: ["40 سنة", "35 سنة", "45 سنة", "50 سنة"], answer: "40 سنة", category: "إسلاميات", difficulty: 'hard' },
-  { question: "من هو الصحابي الذي لقب بـ(سيف الله المسلول)؟", choices: ["خالد بن الوليد", "علي بن أبي طالب", "عمر بن الخطاب", "أبو بكر الصديق"], answer: "خالد بن الوليد", category: "إسلاميات", difficulty: 'hard' },
-  { question: "ما هو اسم أول مسجد بني في الإسلام؟", choices: ["مسجد قباء", "المسجد الحرام", "المسجد النبوي", "المسجد الأقصى"], answer: "مسجد قباء", category: "إسلاميات", difficulty: 'hard' },
-  { question: "كم عدد سور القرآن الكريم؟", choices: ["114", "113", "112", "115"], answer: "114", category: "إسلاميات", difficulty: 'hard' },
-  { question: "ما هي السورة التي لا تبدأ بالبسملة؟", choices: ["سورة التوبة", "سورة الفاتحة", "سورة الإخلاص", "سورة الكهف"], answer: "سورة التوبة", category: "إسلاميات", difficulty: 'hard' },
+  // أسئلة اسلامي صعبة
+  { question: "ما هو اسم الغزوة التي وقعت في شهر رمضان في السنة الثانية للهجرة؟", choices: ["غزوة بدر", "غزوة أحد", "غزوة تبوك", "غزوة الخندق"], answer: "غزوة بدر", category: "اسلامي", difficulty: 'hard' },
+  { question: "كم كان عمر النبي محمد عند البعثة؟", choices: ["40 سنة", "35 سنة", "45 سنة", "50 سنة"], answer: "40 سنة", category: "اسلامي", difficulty: 'hard' },
+  { question: "من هو الصحابي الذي لقب بـ(سيف الله المسلول)؟", choices: ["خالد بن الوليد", "علي بن أبي طالب", "عمر بن الخطاب", "أبو بكر الصديق"], answer: "خالد بن الوليد", category: "اسلامي", difficulty: 'hard' },
+  { question: "ما هو اسم أول مسجد بني في الإسلام؟", choices: ["مسجد قباء", "المسجد الحرام", "المسجد النبوي", "المسجد الأقصى"], answer: "مسجد قباء", category: "اسلامي", difficulty: 'hard' },
+  { question: "كم عدد سور القرآن الكريم؟", choices: ["114", "113", "112", "115"], answer: "114", category: "اسلامي", difficulty: 'hard' },
+  { question: "ما هي السورة التي لا تبدأ بالبسملة؟", choices: ["سورة التوبة", "سورة الفاتحة", "سورة الإخلاص", "سورة الكهف"], answer: "سورة التوبة", category: "اسلامي", difficulty: 'hard' },
 
   // أسئلة كرة القدم
   { question: "من هو اللاعب الذي يُلقب بالظاهرة؟", choices: ["رونالدو البرازيلي", "ميسي", "زيدان", "بيليه"], answer: "رونالدو البرازيلي", category: "رياضة", difficulty: 'easy' },
@@ -69,11 +69,11 @@ export const AR_QUESTIONS: Question[] = [
   { question: "كم عدد اللاعبين في فريق كرة القدم الأساسي؟", choices: ["11", "10", "12", "9"], answer: "11", category: "رياضة", difficulty: 'easy' },
 
   // أسئلة إسلامية إضافية
-  { question: "كم عدد آيات سورة البقرة؟", choices: ["286", "285", "287", "288"], answer: "286", category: "إسلاميات", difficulty: 'medium' },
-  { question: "من هو النبي الذي ابتلعه الحوت؟", choices: ["يونس", "موسى", "إبراهيم", "إلياس"], answer: "يونس", category: "إسلاميات", difficulty: 'easy' },
-  { question: "ما هي أول كلمة نزلت في القرآن الكريم؟", choices: ["اقرأ", "الحمد", "بسم", "قل"], answer: "اقرأ", category: "إسلاميات", difficulty: 'easy' },
-  { question: "ما هي السورة التي تُسمى قلب القرآن؟", choices: ["يس", "الفاتحة", "الرحمن", "البقرة"], answer: "يس", category: "إسلاميات", difficulty: 'medium' },
-  { question: "في أي سورة وردت آية الكرسي؟", choices: ["البقرة", "آل عمران", "النساء", "المائدة"], answer: "البقرة", category: "إسلاميات", difficulty: 'easy' },
+  { question: "كم عدد آيات سورة البقرة؟", choices: ["286", "285", "287", "288"], answer: "286", category: "اسلامي", difficulty: 'medium' },
+  { question: "من هو النبي الذي ابتلعه الحوت؟", choices: ["يونس", "موسى", "إبراهيم", "إلياس"], answer: "يونس", category: "اسلامي", difficulty: 'easy' },
+  { question: "ما هي أول كلمة نزلت في القرآن الكريم؟", choices: ["اقرأ", "الحمد", "بسم", "قل"], answer: "اقرأ", category: "اسلامي", difficulty: 'easy' },
+  { question: "ما هي السورة التي تُسمى قلب القرآن؟", choices: ["يس", "الفاتحة", "الرحمن", "البقرة"], answer: "يس", category: "اسلامي", difficulty: 'medium' },
+  { question: "في أي سورة وردت آية الكرسي؟", choices: ["البقرة", "آل عمران", "النساء", "المائدة"], answer: "البقرة", category: "اسلامي", difficulty: 'easy' },
 
   // أسئلة رياضية إضافية
   { question: "من هو أكثر لاعب سجل أهدافًا في تاريخ كأس العالم؟", choices: ["ميروسلاف كلوزه", "بيليه", "رونالدو", "جيرد مولر"], answer: "ميروسلاف كلوزه", category: "رياضة", difficulty: 'hard' },
@@ -83,11 +83,11 @@ export const AR_QUESTIONS: Question[] = [
   { question: "ما هو النادي الأكثر تتويجًا بالدوري الإنجليزي الممتاز؟", choices: ["مانشستر يونايتد", "ليفربول", "تشيلسي", "أرسنال"], answer: "مانشستر يونايتد", category: "رياضة", difficulty: 'medium' },
 
   // أسئلة إسلامية جديدة
-  { question: "ما هي السورة التي تعدل ثلث القرآن؟", choices: ["الإخلاص", "الفلق", "الكوثر", "الناس"], answer: "الإخلاص", category: "إسلاميات", difficulty: 'easy' },
-  { question: "كم عدد سور القرآن الكريم؟", choices: ["114", "113", "112", "115"], answer: "114", category: "إسلاميات", difficulty: 'easy' },
-  { question: "من هو أول الأنبياء؟", choices: ["آدم", "نوح", "إبراهيم", "موسى"], answer: "آدم", category: "إسلاميات", difficulty: 'easy' },
-  { question: "ما هي الصلاة التي تُسمى الصلاة الوسطى؟", choices: ["العصر", "الظهر", "المغرب", "العشاء"], answer: "العصر", category: "إسلاميات", difficulty: 'medium' },
-  { question: "من هو النبي الذي بنى الكعبة مع ابنه؟", choices: ["إبراهيم", "نوح", "موسى", "عيسى"], answer: "إبراهيم", category: "إسلاميات", difficulty: 'medium' },
+  { question: "ما هي السورة التي تعدل ثلث القرآن؟", choices: ["الإخلاص", "الفلق", "الكوثر", "الناس"], answer: "الإخلاص", category: "اسلامي", difficulty: 'easy' },
+  { question: "كم عدد سور القرآن الكريم؟", choices: ["114", "113", "112", "115"], answer: "114", category: "اسلامي", difficulty: 'easy' },
+  { question: "من هو أول الأنبياء؟", choices: ["آدم", "نوح", "إبراهيم", "موسى"], answer: "آدم", category: "اسلامي", difficulty: 'easy' },
+  { question: "ما هي الصلاة التي تُسمى الصلاة الوسطى؟", choices: ["العصر", "الظهر", "المغرب", "العشاء"], answer: "العصر", category: "اسلامي", difficulty: 'medium' },
+  { question: "من هو النبي الذي بنى الكعبة مع ابنه؟", choices: ["إبراهيم", "نوح", "موسى", "عيسى"], answer: "إبراهيم", category: "اسلامي", difficulty: 'medium' },
 
   // أسئلة رياضية جديدة
   { question: "ما هو أول فريق عربي تأهل لكأس العالم؟", choices: ["مصر", "المغرب", "الجزائر", "السعودية"], answer: "مصر", category: "رياضة", difficulty: 'medium' },
@@ -106,8 +106,8 @@ export const AR_QUESTIONS: Question[] = [
 { question: "ما هو اسم عاصمة كندا؟", choices: ["أوتاوا", "تورنتو", "فانكوفر", "مونتريال"], answer: "أوتاوا", category: "جغرافيا", difficulty: 'medium' },
 { question: "كم عدد الأسنان الدائمة لدى الإنسان البالغ؟", choices: ["32", "30", "28", "34"], answer: "32", category: "علوم", difficulty: 'medium' },
 { question: "من هو مخترع الهاتف؟", choices: ["جراهام بيل", "توماس إديسون", "ألبرت أينشتاين", "نيوتن"], answer: "جراهام بيل", category: "ثقافة عامة", difficulty: 'medium' },
-{ question: "في أي سنة هاجر النبي محمد إلى المدينة؟", choices: ["622م", "610م", "632م", "600م"], answer: "622م", category: "إسلاميات", difficulty: 'medium' },
-{ question: "من هو الصحابي الذي جمع القرآن في مصحف واحد؟", choices: ["أبو بكر الصديق", "عمر بن الخطاب", "عثمان بن عفان", "علي بن أبي طالب"], answer: "عثمان بن عفان", category: "إسلاميات", difficulty: 'medium' },
+{ question: "في أي سنة هاجر النبي محمد إلى المدينة؟", choices: ["622م", "610م", "632م", "600م"], answer: "622م", category: "اسلامي", difficulty: 'medium' },
+{ question: "من هو الصحابي الذي جمع القرآن في مصحف واحد؟", choices: ["أبو بكر الصديق", "عمر بن الخطاب", "عثمان بن عفان", "علي بن أبي طالب"], answer: "عثمان بن عفان", category: "اسلامي", difficulty: 'medium' },
 { question: "من هو أول من مشى على سطح القمر؟", choices: ["نيل أرمسترونغ", "باز ألدرين", "يوري غاغارين", "مايكل كولينز"], answer: "نيل أرمسترونغ", category: "تاريخ", difficulty: 'medium' }, // was already in original, removed
 { question: "كم عدد الأضلاع في جسم الإنسان؟", choices: ["24", "26", "22", "28"], answer: "24", category: "علوم", difficulty: 'medium' },
 { question: "من هو بطل كأس العالم 2018؟", choices: ["فرنسا", "كرواتيا", "البرازيل", "ألمانيا"], answer: "فرنسا", category: "رياضة", difficulty: 'medium' },
@@ -154,14 +154,14 @@ export const AR_QUESTIONS: Question[] = [
   question: "ما هي السورة التي ذكرت فيها البسملة مرتين؟",
   choices: ["سورة النمل", "سورة الفاتحة", "سورة يوسف", "سورة الحج"],
   answer: "سورة النمل",
-  category: "إسلاميات",
+  category: "اسلامي",
   difficulty: "hard"
 },
 {
   question: "كم مرة ذُكر اسم 'فرعون' في القرآن الكريم؟",
   choices: ["74 مرة", "54 مرة", "34 مرة", "24 مرة"],
   answer: "74 مرة",
-  category: "إسلاميات",
+  category: "اسلامي",
   difficulty: "hard"
 },
 
@@ -169,14 +169,14 @@ export const AR_QUESTIONS: Question[] = [
   question: "من هو الصحابي الذي جمع القرآن بعد وفاة النبي ﷺ؟",
   choices: ["عثمان بن عفان", "علي بن أبي طالب", "زيد بن ثابت", "أبو بكر الصديق"],
   answer: "زيد بن ثابت",
-  category: "إسلاميات",
+  category: "اسلامي",
   difficulty: "hard"
 },
 {
   question: "ما هي أطول آية في القرآن الكريم؟",
   choices: ["آية الكرسي", "آية الدين", "آية الوضوء", "آية النور"],
   answer: "آية الدين",
-  category: "إسلاميات",
+  category: "اسلامي",
   difficulty: "hard"
 }
 ];
